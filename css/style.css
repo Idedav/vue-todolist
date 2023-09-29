@@ -6,6 +6,7 @@
     width: 100%;
 }
 
+
 input{
     border-radius: 10px;
     width: 350px;
@@ -54,11 +55,19 @@ i{
     font-size: 20px;
 }
 
-i:hover{
+.fa-check{
+    color: green;
+}
+
+.fa-trash-can:hover{
     color: red;
     cursor: pointer;
 }
 
 .done{
     text-decoration: line-through;
+}
+
+.emoji{
+    width: 80px;
 }

@@ -39,9 +39,13 @@
             v-if="tasks.length > 0"
             v-for="(task, index) in tasks"
             class="d-flex justify-content-between">
-            <span :class="{'done': task.isDo}">{{ task.taskDesc }}</span> <i class="fa-solid fa-trash-can"
+            <span :class="{'done': task.isDo}">{{ task.taskDesc }}<i v-if="task.isDo"
+                class="fa-solid fa-check ms-2"></i></span> <i class="fa-solid fa-trash-can"
             @click.stop="removeTask(index)"></i></li>
-            <h2 v-else>Non ci sono Task</h2>
+            <div v-else class="d-flex align-items-center">
+                <h2>Non ci sono task!</h2>
+                <img class="emoji ms-3" src="img/1f60e.gif" alt="">
+            </div>
            </ul> 
         </div>
         <p v-if="isErrorTask">Errore! Puoi eliminare dalla lista solo le task che hai svolto. Fannullone!</p>
