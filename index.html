@@ -40,7 +40,7 @@
             v-for="(task, index) in tasks"
             class="d-flex justify-content-between">
             <span :class="{'done': task.isDo}">{{ task.taskDesc }}</span> <i class="fa-solid fa-trash-can"
-            @click="removeTask(index)"></i></li>
+            @click.stop="removeTask(index)"></i></li>
             <h2 v-else>Non ci sono Task</h2>
            </ul> 
         </div>
