@@ -24,9 +24,15 @@ createApp({
 
     methods:{
         addTask(){
-            this.tasks.unshift({taskDesc: this.newTask, isDo: false});
+            const newTaskObject = {taskDesc: this.newTask, isDo: false}
+            this.tasks.unshift(newTaskObject);
             this.newTask = '';
+        },
+
+        removeTask(index){
+            return this.tasks.splice(index, 1);
         }
+
     },
 
     mounted(){

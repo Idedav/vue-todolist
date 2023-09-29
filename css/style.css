@@ -39,6 +39,10 @@ li{
     margin-bottom: 25px;
 }
 
+i{
+    font-size: 20px;
+}
+
 .done{
     text-decoration: line-through;
 }
