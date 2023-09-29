@@ -6,23 +6,27 @@ createApp({
         return{
             tasks:[
                 {
-                    taskDesc: 'Fare la spesa',
+                    taskDesc: 'Hittare lo smeraldo su LoL',
                     isDo: false
                 },
                 {
-                    taskDesc: 'Studiare',
+                    taskDesc: 'Studiare VueJs',
                     isDo: false
                 },
                 {
-                    taskDesc: 'Cucinare',
+                    taskDesc: 'Giocare a Padel',
                     isDo: false
                 },
-            ]
+            ],
+            newTask:''
         }
     },
 
     methods:{
-
+        addTask(){
+            this.tasks.unshift({taskDesc: this.newTask, isDo: false});
+            this.newTask = '';
+        }
     },
 
     mounted(){
