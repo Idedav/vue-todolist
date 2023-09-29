@@ -29,6 +29,7 @@
             type="text" 
             placeholder="New Task">
             <button @click="addTask" >Aggiungi</button>
+            <p v-if="isErrorText">Errore! La task deve contenere almeno 5 caratteri</p>
         </div>
 
         <div class="task-container my-4">
@@ -43,7 +44,7 @@
             <h2 v-else>Non ci sono Task</h2>
            </ul> 
         </div>
-
+        <p v-if="isErrorTask">Errore! Puoi eliminare dalla lista solo le task che hai svolto. Fannullone!</p>
 
     </div>
 

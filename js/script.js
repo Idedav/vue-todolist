@@ -18,19 +18,31 @@ createApp({
                     isDo: false
                 },
             ],
-            newTask:''
+            newTask:'',
+            isErrorText: false,
+            isErrorTask: false
         }
     },
 
     methods:{
         addTask(){
-            const newTaskObject = {taskDesc: this.newTask, isDo: false}
-            this.tasks.unshift(newTaskObject);
-            this.newTask = '';
+            if(this.newTask.length < 5){
+                this.isErrorText = true;
+            }else{
+                const newTaskObject = {taskDesc: this.newTask, isDo: false}
+                this.tasks.unshift(newTaskObject);
+                this.newTask = '';
+                this.isErrorText = false;
+            }
         },
 
         removeTask(index){
-            return this.tasks.splice(index, 1);
+            if(!this.tasks[index].isDo){
+                this.isErrorTask = true;
+            }else{
+                this.tasks.splice(index, 1);
+                this.isErrorTask = false;
+            }
         }
 
     },
