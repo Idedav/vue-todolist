@@ -17,38 +17,71 @@
 </head>
 <body>
     <div id="app" class="container d-flex flex-column align-items-center">
-
-        <div class="logo my-5">
+        <!-- LOGO -->
+        <div class="logo mt-5 mb-3">
             <img src="img/logo.jpg" alt="">
         </div>
-
-        <div class="input-container">
-            <input 
-            v-model.trim="newTask"
-            @keyup.enter="addTask"
-            type="text" 
-            placeholder="New Task">
-            <button @click="addTask" >Aggiungi</button>
-            <p v-if="isErrorText">Errore! La task deve contenere almeno 5 caratteri</p>
+        <!-- BUTTONS CONTAINER -->
+        <div class="buttons-container m-4">
+            <button @click="viewTaskComplete = false">Tasks da completare</button>
+            <button @click="viewTaskComplete = true">Tasks completate</button>
         </div>
-
-        <div class="task-container my-4">
-           <ul>
-            <li 
-            @click="task.isDo ? task.isDo = false : task.isDo = true "
-            v-if="tasks.length > 0"
-            v-for="(task, index) in tasks"
-            class="d-flex justify-content-between">
-            <span :class="{'done': task.isDo}">{{ task.taskDesc }}<i v-if="task.isDo"
-                class="fa-solid fa-check ms-2"></i></span> <i class="fa-solid fa-trash-can"
-            @click.stop="removeTask(index)"></i></li>
-            <div v-else class="d-flex align-items-center">
-                <h2>Non ci sono task!</h2>
-                <img class="emoji ms-3" src="img/1f60e.gif" alt="">
+        <!-- TASKS COMPLETE CONTAINER -->
+        <div v-if="viewTaskComplete" class="container text-center">
+            <h1>Tasks completate</h1>
+            <div class="task-container my-4">
+                <ul>
+                    <li 
+                    v-if="tasksComplete.length > 0"
+                    v-for="(taskComp, index) in tasksComplete"
+                    class="d-flex justify-content-between">
+                        <span>{{ taskComp.taskDesc }}
+                            <i class="fa-solid fa-check ms-2"></i>
+                        </span>
+                        <i
+                        @click="returnTask(index)" 
+                        class="fa-solid fa-rotate-right"></i>
+                    </li>
+                    <div v-else class="d-flex align-items-center">
+                        <h2>Non hai completato ancora nessuna task</h2>
+                        <img class="emoji ms-3" src="img/1f621.gif" alt="">
+                    </div>
+                </ul>
             </div>
-           </ul> 
         </div>
-        <p v-if="isErrorTask">Errore! Puoi eliminare dalla lista solo le task che hai svolto. Fannullone!</p>
+        <!-- TASKS TO COMPLETE CONTAINER -->
+        <div v-else class="container text-center">
+            <h1>Tasks da completare</h1>
+            <!-- INPUT -->
+            <div class="input-container my-4">
+                <input 
+                v-model.trim="newTask"
+                @keyup.enter="addTask"
+                type="text" 
+                placeholder="New Task">
+                <button @click="addTask" >Aggiungi</button>
+                <p v-if="isErrorText">Errore! La task deve contenere almeno 5 caratteri</p>
+            </div>
+            <!-- TASKS CONTAINER -->
+            <div class="task-container my-4">
+               <ul>
+                <li 
+                @click="task.isDo ? task.isDo = false : task.isDo = true "
+                v-if="tasks.length > 0"
+                v-for="(task, index) in tasks"
+                class="d-flex justify-content-between">
+                <span :class="{'done': task.isDo}">{{ task.taskDesc }}<i v-if="task.isDo"
+                    class="fa-solid fa-check ms-2"></i></span> <i class="fa-solid fa-trash-can"
+                @click.stop="removeTask(index)"></i></li>
+                <div v-else class="d-flex align-items-center">
+                    <h2>Non ci sono task!</h2>
+                    <img class="emoji ms-3" src="img/1f60e.gif" alt="">
+                </div>
+               </ul> 
+            </div>
+            <p v-if="isErrorTask">Errore! Puoi eliminare dalla lista solo le task che hai svolto. Fannullone!</p>
+            
+        </div>
 
     </div>
 

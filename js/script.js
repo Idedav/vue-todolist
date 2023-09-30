@@ -18,9 +18,11 @@ createApp({
                     isDo: false
                 },
             ],
+            tasksComplete:[],
             newTask:'',
             isErrorText: false,
-            isErrorTask: false
+            isErrorTask: false,
+            viewTaskComplete: false
         }
     },
 
@@ -42,9 +44,16 @@ createApp({
                 this.isErrorTask = true;
                 this.resetFlag()
             }else{
+                this.tasksComplete.unshift(this.tasks[index]);
                 this.tasks.splice(index, 1);
                 this.isErrorTask = false;
             }
+        },
+
+        returnTask(index){
+            this.tasksComplete[index].isDo = false;
+            this.tasks.unshift(this.tasksComplete[index]);
+            this.tasksComplete.splice(index, 1);
         },
 
         resetFlag(){
@@ -57,7 +66,7 @@ createApp({
     },
 
     mounted(){
-        console.log(this.tasks);
+        // console.log(this.tasks);
     }
 
 
